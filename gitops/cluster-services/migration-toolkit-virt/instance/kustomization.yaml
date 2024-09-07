@@ -1,0 +1,4 @@
+namespace: openshift-mtv
+
+resources:
+  - forklift.yaml

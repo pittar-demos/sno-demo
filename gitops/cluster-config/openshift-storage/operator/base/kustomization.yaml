@@ -1,0 +1,10 @@
+namespace: openshift-storage
+
+commonAnnotations:
+  argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+
+resources:
+  # This namespace already exists when cluster created with Assisted Installer
+  #- namespace.yaml.yaml
+  - operatorgroup.yaml
+  - subscription.yaml

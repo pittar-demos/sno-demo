@@ -1,0 +1,6 @@
+namespace: openshift-mtv
+
+resources:
+  - namespace.yaml
+  - operatorgroup.yaml
+  - subscription.yaml

@@ -1,0 +1,31 @@
+apiVersion: cert-manager.io/v1
+kind: ClusterIssuer
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-wave: "2"
+  name: letsencrypt-prod
+spec:
+  acme:
+    server: https://acme-v02.api.letsencrypt.org/directory
+    email: <your admin email>
+    # This key doesn't exist, cert-manager creates it
+    privateKeySecretRef:
+      name: r53-issuer-account-key
+    solvers:
+    - selector:
+        dnsZones:
+          # Change this to your own hosted zone.
+          - "example.com"
+      dns01:
+        route53:
+          # Change to your region.
+          region: ca-central-1
+          # Your hostez zone ID.  E.g. Z9C7TI47J0X4BN
+          hostedZoneID: <your hosted zone id>
+          # The secret (named route53-creds) with your access key/value.
+          accessKeyIDSecretRef:
+            name: route53-creds
+            key: access-key-id
+          secretAccessKeySecretRef:
+            name: route53-creds
+            key: secret-access-key

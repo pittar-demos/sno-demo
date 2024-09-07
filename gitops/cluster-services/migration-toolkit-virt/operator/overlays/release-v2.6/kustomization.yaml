@@ -1,0 +1,10 @@
+namespace: openshift-mtv
+
+resources:
+  - ../../base
+
+patches:
+  - target:
+      kind: Subscription
+      name: mtv-operator
+    path: patch-channel.yaml
