@@ -1,0 +1,15 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-wave: "1"
+  name: keycloak-cert
+spec:
+  isCA: false
+  commonName: "keycloak.apps.your.cluster.url" 
+  secretName: keycloak-cert 
+  dnsNames:
+  - "keycloak.apps.your.cluster.url" 
+  issuerRef:
+    name: selfsigned-isser 
+    kind: ClusterIssuer

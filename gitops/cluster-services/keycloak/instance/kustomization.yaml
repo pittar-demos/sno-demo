@@ -1,0 +1,14 @@
+namespace: keycloak
+
+resources:
+  # This secret is only required until External Secrets is enabled
+  - keycloak-creds-secret.yaml
+  # External Secrets not yet configured
+  #- keycloak-db-externalsecret.yaml
+  # Cert applied manually so hard coded domain isn't part of this repo.
+  #- keycloak-certificate.yaml
+  - postgresql-pvc.yaml
+  - postgresql-statefulset.yaml
+  - postgresql-svc.yaml
+  # Keycloak manually applied for now to avoid hard coded domain name in git.
+  #- keycloak.yaml
