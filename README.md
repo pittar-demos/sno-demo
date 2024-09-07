@@ -53,49 +53,13 @@ This will deploy and/or configure:
 * [Migration Toolkit for Virtualization](gitops/cluster-services/migration-toolkit-virt)
 * [Cert-Manager](gitops/cluster-config/cert-manager)
 
-### Post Install Cert-Manager Config
+### Post Install Configuration
 
-Normally, you would put the following config in your git repo, since domain names are not generally considered to be sensitive info (especially if you have a priate GitOps repository).  However, since this demo can be used for *any* domain, this obviously can't be hard coded up front.
+Optional configuration that requires a small amount of manual work (in order to avoid hard-coding domain names into these files):
 
-The automation has handled deploying [Cert-Manager](https://docs.openshift.com/container-platform/latest/security/cert_manager_operator/index.html) as well as a defailt `Issuer` for self-signed certificates.  This `Issuer` will be used to create a root CA.  This root CA will then be used by a new cluster-wide `ClusterIssuer` to generate self-signed certificates for specific domains.
+1. [cert-manager](docs/cert-manager.md):  Configure a self-signed `ClusterIssuer` to create certificates for workloads.
+2. [Keycloak](docs/keycloak.md):  An Identity and Access Management platform (requires cert-manager to be configured first).
 
-Create the following yaml file on a machine that has `oc` command line access to your cluster.  Be sure to substitute in your own `commonName`.  You can name this file whatever you like, but for this example it can be named `selfsigned-ca.yaml`.
-
-```
----
-apiVersion: cert-manager.io/v1
-kind: Certificate
-metadata:
-  name: selfsigned-ca
-  namespace: cert-manager
-spec:
-  isCA: true
-  commonName: apps.lab.pitt.ca
-  secretName: root-secret
-  privateKey:
-    algorithm: ECDSA
-    size: 256
-  issuerRef:
-    name: root-ca-issuer
-    kind: Issuer
-    group: cert-manager.io
----
-apiVersion: cert-manager.io/v1
-kind: ClusterIssuer
-metadata:
-  name: selfsigned-issuer
-spec:
-  ca:
-    secretName: root-secret
-```
-
-Now, apply the file to create your root CA and `ClusterIssuer`.
-
-```
-oc create -f selfsigned-ca.yaml -n cert-manager
-```
-
-You can now use cert-manager to create self-signed certificates for cluster workloads.
 
 ## Notably Missing
 

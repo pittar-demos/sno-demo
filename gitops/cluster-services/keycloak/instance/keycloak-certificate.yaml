@@ -11,5 +11,5 @@ spec:
   dnsNames:
   - "keycloak.apps.your.cluster.url" 
   issuerRef:
-    name: selfsigned-isser 
+    name: selfsigned-issuer 
     kind: ClusterIssuer
