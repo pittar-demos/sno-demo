@@ -5,4 +5,4 @@ resources:
   - ../../../cluster-services/migration-toolkit-virt/operator
   - ../../../cluster-services/migration-toolkit-virt/instance
   - ../../../cluster-services/keycloak/operator
-  # - ../../../cluster-services/keycloak/instance
+  - ../../../cluster-services/keycloak/instance

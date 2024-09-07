@@ -2,7 +2,7 @@ kind: Application
 apiVersion: argoproj.io/v1alpha1
 metadata:
   annotations:
-    argocd.argoproj.io/sync-wave: "26"
+    argocd.argoproj.io/sync-wave: "305"
   labels:
     gitops.ownedBy: openshift-gitops
     app.type: operator-instance
@@ -13,7 +13,7 @@ spec:
     server: https://kubernetes.default.svc
   project: cluster-config
   source:
-    path: gitops/cluster-config/keycloak/instance
+    path: gitops/cluster-services/keycloak/instance
     repoURL: https://github.com/pittar-demos/sno-demo.git
     targetRevision: main
   syncPolicy:
