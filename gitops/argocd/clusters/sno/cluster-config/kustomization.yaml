@@ -3,7 +3,7 @@ namespace: openshift-gitops
 resources:
   - cluster-config-project.yaml
   # - ../../../cluster-config/custom-roles
-  # - ../../../cluster-config/external-secrets-operator
+  - ../../../cluster-config/external-secrets-operator
   - ../../../cluster-config/cert-manager/operator
   - ../../../cluster-config/cert-manager/instance
   - ../../../cluster-config/openshift-gitops
