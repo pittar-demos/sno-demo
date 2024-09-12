@@ -11,9 +11,5 @@ resources:
   - ../../../cluster-config/openshift-storage/mcg
   - ../../../cluster-config/image-registry
   - ../../../cluster-config/openshift-oauth
-  # - ../../../cluster-config/groups-and-membership
-  # - ../../../cluster-config/keycloak/operator
-  # - ../../../cluster-config/keycloak/instance
-#  - ../../../02-cluster-config/03-cluster-monitoring
-
+  - ../../../cluster-config/groups-and-membership
 
